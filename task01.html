@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            color:#999;
+        }
+        table{
+            height:200px;
+        }
+        .vail{}
+        .vail_success{
+            color:green;
+        }
+        .vail_fail{
+            color:red;
+        }
+        .txt_success{
+            border:2px solid green;
+        }
+        .txt_fail{
+            border:2px solid red;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.onload=function(){
+        var form=document.forms[0];
+        var input1=form.elements["input1"];
+        var input2=form.elements["input2"];
+        var input3=form.elements["input3"];
+        var btn1=document.getElementById("verify1");
+        var btn2=document.getElementById("verify2");
+        var btn3=document.getElementById("verify3");
+        btn1.onclick=vailInput1;
+        btn2.onclick=vailInput2;
+        btn3.onclick=vailInput3;
+        input1.onblur=vailInput1;
+        input2.onblur=vailInput2;
+        input3.onblur=vailInput3;
+    }
+
+    function vailInput1(){
+        var div=document.getElementById("d1");
+        if(input1.value!=""){
+            var r=/^\w{4,16}$/.test(input1.value);
+            div.className=r?"vail_success":"vail_fail";
+            if(r){
+                div.innerHTML="名称格式正确";
+            }else{
+                div.innerHTML="名称格式错误";
+            }
+        }else{
+            div.innerHTML="姓名不能为空";
+            div.className="vail_fail";
+        }
+        return r;
+    }
+    function vailInput2(){
+        var div=document.getElementById("d2");
+        if(input2.value!=""){
+            var r=/[A-Za-z0-9]|[,.;]{1}\w/.test(input2.value);
+            div.className=r?"vail_success":"vail_fail";
+            if(r){
+                div.innerHTML="名称格式正确";
+            }else{
+                div.innerHTML="名称格式错误";
+            }
+        }else{
+            div.innerHTML="姓名不能为空";
+            div.className="vail_fail";
+        }
+        return r;
+    }
+    function vailInput3(){
+        var div=document.getElementById("d3");
+        if(input3.value!=""){
+            var r=/\u4e00-\u9fa5{2}/.test(input3.value);
+            div.className=r?"vail_success":"vail_fail";
+            if(r){
+                div.innerHTML="名称格式正确";
+            }else{
+                div.innerHTML="名称格式错误";
+            }
+        }else{
+            div.innerHTML="姓名不能为空";
+            div.className="vail_fail";
+        }
+        return r;
+    }
+</script>
+<form>
+    <table>
+        <tr>
+            <td><label>名称</label></td>
+            <td><input name="input1" id="input1"></td>
+            <td><button id="verify1">验证</button></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div id="d1" class="vali">必填，长度为4-16个字符</div></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label>名称</label></td>
+            <td><input name="input2" id="input2"></td>
+            <td><button id="verify2">验证</button></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div id="d2" class="vali">必填，每个英文字母、数字、英文符号长度为1</div></td>
+            <td></td>
+        </tr>
+        <tr>
+            <td><label>名称</label></td>
+            <td><input name="input3" id="input3"></td>
+            <td><button id="verify3">验证</button></td>
+        </tr>
+        <tr>
+            <td></td>
+            <td><div id="d3" class="vali">必填，中文字符长度为2</div></td>
+            <td></td>
+        </tr>
+    </table>
+</form>
+</body>
+</html>
