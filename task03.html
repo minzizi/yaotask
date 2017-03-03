@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        .school,.company{
+            display:none;
+        }
+    </style>
+</head>
+<script>
+    var data=[{"name":'北京',"children":[{"name":'清华大学'},{"name":'北京大学'}]
+    },{"name":'上海',"children":[{"name":'上海交通大学'},{"name":'复旦大学'}]
+    },{"name":'广东',"children":[{"name":'中山大学'},{"name":'华南师范大学'}]
+    }];
+//    nostd.onclick
+    function loadData(data){
+        var form=document.getElementById("form");
+        var select=document.createElement("select");
+        select.add(new Option("请选择"));
+        for(var i=0;i<data.length;i++){
+            select.add(new Option(data[i].name));
+        }
+        form.appendChild(select);
+        select.onchange=function(){
+            while(this.nextSibling){
+                this.parentNode.removeChild(this.nextSibling);
+            }
+            var checked=data[this.selectedIndex-1];
+            if(checked.children){
+                loadData(checked.children);
+            }
+        }
+    }
+    function vail(){
+        if(std.checked){
+            loadData(data);
+            school.className="";
+            company.className="company";
+        }else if(nostd.checked){
+            var select=document.getElementsByTagName("select")[0];
+            select.remove();
+            company.className="";
+            school.className="school";
+        }
+    }
+    window.onload=function(){
+        var std=document.getElementById("std");
+        var nostd=document.getElementById("nostd");
+        var school=document.getElementById("school");
+        var company=document.getElementById("company");
+        std.onclick=vail;
+        nostd.onclick=vail;
+    }
+</script>
+<body>
+<form id="form">
+    <input type="radio" value="std" name="ide" id="std"/>在校生
+    <input type="radio" value="nostd" name="ide" id="nostd"/>非在校生<br>
+    <ladel class="school" id="school">学校</ladel>
+    <div class="company" id="company">
+        <ladel>就业单位</ladel><input type="text">
+    </div>
+</form>
+</body>
+</html>
