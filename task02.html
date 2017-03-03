@@ -1,0 +1,193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        div{
+            color:#999;
+        }
+        table{
+            height:200px;
+        }
+        .vail{
+            display:none;
+        }
+        .vail_success{
+            color:green;
+        }
+        .vail_fail{
+            color:red;
+        }
+        .txt_success{
+            border:2px solid green;
+        }
+        .txt_fail{
+            border:2px solid red;
+        }
+    </style>
+</head>
+<body>
+<script>
+    window.$=HTMLElement.prototype.$=function(selector){
+        return (this==window?document:this).querySelectorAll(selector);
+    }
+    window.onload=function(){
+        var form=document.forms[0];
+        var input1=form.elements["input1"];
+        var input2=form.elements["input2"];
+        var input3=form.elements["input3"];
+        var input4=form.elements["input4"];
+        var input5=form.elements["input5"];
+        input1.onfocus=input2.onfocus=input3.onfocus=input4.onfocus=input5.onfocus=function(){
+            this.parentNode.parentNode.$("div")[0].className="";
+            this.className="";
+        }
+        input1.onblur=vailInput1;
+        input2.onblur=vailInput2;
+        input3.onblur=vailInput3;
+        input4.onblur=vailInput4;
+        input5.onblur=vailInput5;
+        form.onsubmit=function(){
+            var r=true;
+            r=vailInput1()&&vailInput2()&&vailInput3()&&vailInput4()&&vailInput5();
+            if(!r){
+                var e=window.event||arguments[0];
+                if(e.preventDefalut){
+                    e.preventDefalut();
+                    alert("请正确填写表单");
+                }else{
+                    e.returnValue=false;
+                    alert("请正确填写表单");
+                }
+            }
+        }
+    }
+
+    function vailInput1(){
+        var div=document.getElementById("d1");
+        if(input1.value!=""){
+            var r=/^\w{4,16}$/.test(input1.value);
+            div.className=r?"vail_success":"vail_fail";
+            this.className=r?"txt_success":"txt_fail";
+            if(r){
+                div.innerHTML="名称格式正确";
+            }else{
+                div.innerHTML="名称格式错误";
+            }
+        }else{
+            div.innerHTML="姓名不能为空";
+            div.className="vail_fail";
+            input1.className="txt_fail";
+        }
+        return r;
+    }
+    function vailInput2(){
+        var div=document.getElementById("d2");
+        if(input2.value!=""){
+            var r=/\d{6}/.test(input2.value);
+            div.className=r?"vail_success":"vail_fail";
+            this.className=r?"txt_success":"txt_fail";
+            if(r){
+                div.innerHTML="密码可用";
+            }else{
+                div.innerHTML="密码格式错误";
+            }
+        }else{
+            div.innerHTML="密码不能为空";
+            div.className="vail_fail";
+            input2.className="txt_fail";
+        }
+        return r;
+    }
+    function vailInput3(){
+        var div=document.getElementById("d3");
+        if(input3.value!=""){
+            if(input3.value==input2.value){
+                div.innerHTML="密码输入正确";
+                div.className="vail_success";
+                input3.className="txt_success";
+                var r=true;
+            }else{
+                div.innerHTML="密码两次输入不一样";
+                div.className="vail_fail";
+                input3.className="txt_fail";
+                r=false;
+            }
+        }else{
+            div.innerHTML="密码不能为空";
+            div.className="vail_fail";
+            input3.className="txt_fail";
+            r=false;
+        }
+        return r;
+    }
+    function vailInput4(){
+        var div=document.getElementById("d4");
+        if(input4.value!=""){
+            var r=/^\w+@\w+([-]\w+)*(\.\w+)+$/.test(input4.value);
+            div.className=r?"vail_success":"vail_fail";
+            this.className=r?"txt_success":"txt_fail";
+            if(r){
+                div.innerHTML="邮箱格式正确";
+            }else{
+                div.innerHTML="邮箱格式错误";
+            }
+        }else{
+            div.innerHTML="邮箱不能为空";
+            div.className="vail_fail";
+            input4.className="txt_fail";
+        }
+        return r;
+    }
+    function vailInput5(){
+        var div=document.getElementById("d5");
+        if(input5.value!=""){
+            var r=/^1\d{10}$/.test(input5.value);
+            div.className=r?"vail_success":"vail_fail";
+            this.className=r?"txt_success":"txt_fail";
+            if(r){
+                div.innerHTML="手机格式正确";
+            }else{
+                div.innerHTML="手机格式错误";
+            }
+        }else{
+            div.innerHTML="手机不能为空";
+            div.className="vail_fail";
+            input5.className="txt_fail";
+        }
+        return r;
+    }
+</script>
+<form>
+    <table>
+        <tr>
+            <td><label>名称</label></td>
+            <td><input name="input1" id="input1"></td>
+            <td><div id="d1" class="vail">必填，长度为4-16个字符</div></td>
+        </tr>
+        <tr>
+            <td><label>密码</label></td>
+            <td><input name="input2" id="input2" type="password"></td>
+            <td><div id="d2" class="vail">必填，请输入6位数字</div></td>
+        </tr>
+        <tr>
+            <td><label>密码确认</label></td>
+            <td><input name="input3" id="input3" type="password"></td>
+            <td><div id="d3" class="vail">再次确认密码</div></td>
+        </tr>
+        <tr>
+            <td><label>邮箱</label></td>
+            <td><input name="input4" id="input4"></td>
+            <td><div id="d4" class="vail">必填，请输入邮箱地址</div></td>
+        </tr>
+        <tr>
+            <td><label>手机</label></td>
+            <td><input name="input5" id="input5"></td>
+            <td><div id="d5" class="vail">必填，长度为11</div></td>
+        </tr>
+    </table>
+    <input type="submit" value="提交">
+</form>
+</body>
+</html>
