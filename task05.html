@@ -1,0 +1,215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <style>
+        *{
+            margin:0;
+            padding:0;
+        }
+        table{
+            position:relative;
+            border-collapse: collapse;
+        }
+        th{
+            height:40px;
+            width:40px;
+        }
+        td{
+            height:40px;
+            width:40px;
+            border:1px solid #ccc;
+            box-sizing: border-box;
+        }
+        #block{
+            position:absolute;
+            height:40px;
+            width:40px;
+            background:red;
+        }
+        #s_block{
+            position:absolute;
+            height:10px;
+            width:40px;
+            background:blue;
+
+        }
+        input,button,p{
+            margin:20px 10px;
+        }
+    </style>
+    <script type="text/javaScript" src="task05.js"></script>
+</head>
+<body>
+<table>
+    <tr>
+        <th></th>
+        <th>1</th>
+        <th>2</th>
+        <th>3</th>
+        <th>4</th>
+        <th>5</th>
+        <th>6</th>
+        <th>7</th>
+        <th>8</th>
+        <th>9</th>
+        <th>10</th>
+    </tr>
+    <tr>
+        <th>1</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>2</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>3</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>4</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>5</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>6</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>7</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>8</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>9</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr>
+        <th>10</th>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td></td>
+    </tr>
+    <tr id="block">
+        <td id="s_block"></td>
+    </tr>
+</table>
+<input id="input">
+<button id="order">执行</button>
+<button id="traLef">TRA LEF</button>
+<button id="traTop">TRA TOP</button>
+<button id="traRig">TRA RIG</button>
+<button id="traBot">TRA BOT</button>
+<button id="movLef">MOV LEF</button>
+<button id="movTop">MOV TOP</button>
+<button id="movRig">MOV RIG</button>
+<button id="movBot">MOV BOT</button>
+<p>对于正方形的移动增加相应动画，包括移动和旋转<br>
+    每个指令的执行时间是1s（可以自己调整）<br>
+    增加新的指令如下：<br>
+    TRA LEF：向屏幕的左侧移动一格，方向不变<br>
+    TRA TOP：向屏幕的上面移动一格，方向不变<br>
+    TRA RIG：向屏幕的右侧移动一格，方向不变<br>
+    TRA BOT：向屏幕的下面移动一格，方向不变<br>
+    MOV LEF：方向转向屏幕左侧，并向屏幕的左侧移动一格<br>
+    MOV TOP：方向转向屏幕上面，向屏幕的上面移动一格<br>
+    MOV RIG：方向转向屏幕右侧，向屏幕的右侧移动一格<br>
+    MOV BOT：方向转向屏幕下面，向屏幕的下面移动一格</p>
+</body>
+</html>
