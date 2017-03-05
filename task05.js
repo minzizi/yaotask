@@ -73,7 +73,6 @@ window.onload=function(){
             block.style.left=parseInt(left-40)+"px";
             block.style.transform="rotate(270deg)";
             block.style.transition="left 1s,transform 1s";
-            //setTimeout(function() {block.style.left = parseInt(left-40)+"px"}, 1000);
         }else{
             alert("不能再前进了！");
         }
